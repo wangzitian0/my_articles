@@ -1,45 +1,73 @@
-# Codex 公众号创作 Agent 流程
+<!-- WS_STATIC_START adapter=rules-v2 inputs=122ba4e4e7af63f18484c00643769106529498d0969434130d77e81fc255382c -->
+<!-- Generated file: do not edit by hand. These rules are maintained in the owner's rule source and re-rendered here. -->
 
-> 目标：基于仓库现有模板与提示词，完成一篇 3,500-4,000 字的公众号深度文章，并在用户确认“OK”之后提交到 GitHub。
+## Article workflow
 
-## 0. 前置约定
-- 文章资产全部放在 `articles/<topic>/`，关键提示词集中于 `brief.md`。
-- 写作遵循 `README.md` 的五阶段流程与 `05_quality_prompts/agent.md` 的风格约束。
-- 每个阶段的交付文件均为 Markdown，必要时先创建空文件并写“待补充”。
+Goal: using this repository's templates and prompts, write one in-depth WeChat
+Official Account article of 3,500 to 4,000 Chinese characters, and push it to
+GitHub only after the user confirms "OK".
 
-## 1. 输入提纲阶段（01_brief_inputs）
-1. 用户更新 `articles/<topic>/brief.md`，说明主题、痛点、案例、数据诉求。
-2. 运行 `01_brief_inputs/outline_prompt.md`，生成结构化提纲，落到 `outline.md`。
-3. 同步记录素材缺口到 `gap_list.md`，标注视觉/互动占位。
+### 0. Conventions
 
-## 2. 素材归纳阶段（02_synthesis）
-1. 用 `case_prompt.md`/`synthesis_prompt.md` 补齐案例与数据，写入 `cases.md`、`insights.md`。
-2. 数据必须注明四要素（数值、时间、主体、来源）；缺失项继续留在 `gap_list.md`。
+- All article assets live in `articles/<topic>/`; the key prompts are gathered
+  in `brief.md`.
+- Writing follows the five-stage process in `README.md` and the style
+  constraints in `05_quality_prompts/agent.md`.
+- Every stage delivers Markdown files. Create an empty file marked "to be
+  filled" first when needed.
 
-## 3. 章节迭代阶段（03_chapter_iterations）
-1. 依据 `chapter_prompt.md` 逐章写作，将产物放入 `chapters/chapter_<n>.md`。
-2. 每节写完立即更新 `chapters/chapter_<n>_qa.md`，引用 `quality_checklists.md` 勾项。
-3. 与用户对话确认调整后再进入下一章。
+### 1. Brief and outline (`01_brief_inputs`)
 
-## 4. 成稿交付阶段（04_article_delivery）
-1. 汇总章节至 `article.md`，同时更新 `visual_plan.md` 和互动引导位置。
-2. 核查“我”字计数、字数区间、视觉元素五处是否全部落地。
+1. The user updates `articles/<topic>/brief.md` with the topic, pain points,
+   cases and the data wanted.
+2. Run `01_brief_inputs/outline_prompt.md` to produce a structured outline in
+   `outline.md`.
+3. Record material gaps in `gap_list.md`, marking visual and interaction
+   placeholders.
 
-## 5. 质检与提示词维护阶段（05_quality_prompts）
-1. 运行 `quality_checklists.md` 的全文/章节/节级检查，记录到 `articles/<topic>/qa.md`（可参考 `qa_report_template.md`）。
-2. 将本次经验或提示词调整写入 `articles/<topic>/prompts.md`，并在仓库 `prompt_update_log.md` 留痕。
-3. 只有当所有必需项通过或给出整改计划时，才进入提交环节。
+### 2. Material synthesis (`02_synthesis`)
 
-## 6. 提交到 GitHub
-1. 用户确认文章与 QA 均“OK”后，执行：  
-   ```bash
-   git add .
-   git commit -m "feat: publish <topic> article"
-   git push origin main
-   ```
-2. 若需合并或开 PR，遵循项目默认流程；不可跳过质检记录。
+1. Use `case_prompt.md` and `synthesis_prompt.md` to fill in cases and data,
+   written to `cases.md` and `insights.md`.
+2. Every data point states four things: the value, the time, the subject, and
+   the source. Anything missing stays in `gap_list.md`.
 
-## 关键检查点
-- 每章至少 1 个可查证案例 + 1 组有来源的数据。
-- 全文 5 章结构完整，互动引导 ≥ 3，行动清单 3 份。
-- `brief.md` 是唯一来源，若修改后需回到阶段 1 重新对齐。
+### 3. Chapter iterations (`03_chapter_iterations`)
+
+1. Write chapter by chapter following `chapter_prompt.md`, into
+   `chapters/chapter_<n>.md`.
+2. After each section, update `chapters/chapter_<n>_qa.md` at once, ticking
+   items from `quality_checklists.md`.
+3. Confirm adjustments with the user before moving to the next chapter.
+
+### 4. Article delivery (`04_article_delivery`)
+
+1. Assemble the chapters into `article.md`, and update `visual_plan.md` and the
+   interaction prompts.
+2. Check how often the first person is used, the length range, and that all
+   five visual elements are in place.
+
+### 5. Quality checks and prompt maintenance (`05_quality_prompts`)
+
+1. Run the full-text, chapter and section checks in `quality_checklists.md`,
+   recording results in `articles/<topic>/qa.md` (see `qa_report_template.md`).
+2. Write this round's lessons or prompt changes to `articles/<topic>/prompts.md`,
+   and log them in the repository's `prompt_update_log.md`.
+3. Move to publishing only when every required item passes or has a
+   remediation plan.
+
+### 6. Publishing to GitHub
+
+1. Only after the user confirms both the article and the QA as "OK", commit and
+   push the article.
+2. If a merge or PR is needed, follow the project's default flow. The QA record
+   is never skipped.
+
+### Key checkpoints
+
+- Each chapter has at least one verifiable case and one sourced data set.
+- The article has all five chapters, at least three interaction prompts, and
+  three action checklists.
+- `brief.md` is the single source; after changing it, go back to stage 1 and
+  realign.
+<!-- WS_STATIC_END -->
