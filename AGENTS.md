@@ -1,11 +1,21 @@
-<!-- WS_STATIC_START adapter=rules-v2 inputs=122ba4e4e7af63f18484c00643769106529498d0969434130d77e81fc255382c -->
+<!-- WS_STATIC_START adapter=rules-v2 inputs=fd4f3afe72f59c6e8e3fc218891ed27338569e7f988e1d0842465f1dcd9910d8 -->
 <!-- Generated file: do not edit by hand. These rules are maintained in the owner's rule source and re-rendered here. -->
+
+## Production reservation
+
+The single definition of the production reservation. Other tiers, skills and gates point here.
+
+- **Only a production change returns to the owner.** A production change alters what production runs or stores. Examples: a deploy, promote or apply to production; a production secret write; a manual production data write or deletion. Also a production DNS, route or host change, and a release that cannot be recalled. Code that reaches production with no later owner approval, for example on a schedule, counts too. Each Repo tier names its production paths.
+- **Approval:** the owner approves the exact commit SHA or release tag of each production change, and is present when it runs. A "deploy" reply covers only the release that it names. Immediately before a production dispatch, get a live reply from the owner.
+- **Self-guard:** an edit that removes, narrows or redefines the production reservation needs the owner's approval of its head SHA. This includes an edit that makes fewer production runs wait for the owner. Examples: the owner-approval check of a deploy path, a production job classification, the settings of a production environment. It also includes an edit that removes or weakens a pin of this section or its dev_env pin test. The same holds for the required check that runs the test.
+- **Everything else is the agent's:** in a repository that the owner owns, every merge, staging and canary deploy, and release tag. Also rule text, skills, gate code, data and tests, required-check workflows and release code. Before you merge gate or release code, a read-only reviewer that did not write it checks the head. The review states whether the gate gets stricter, stays equal or gets looser. A looser edit in the self-guard list follows the self-guard.
+- **Every other hold is a defect:** a rule, skill, label or gate exit code that holds non-production work for the owner. Do the work, then fix the hold. The dev_env check `ws_owner_scope` fails on it.
 
 ## Article workflow
 
 Goal: using this repository's templates and prompts, write one in-depth WeChat
-Official Account article of 3,500 to 4,000 Chinese characters, and push it to
-GitHub only after the user confirms "OK".
+Official Account article of 3,500 to 4,000 Chinese characters. A push of the
+article to GitHub is this repository's production release.
 
 ### 0. Conventions
 
@@ -38,7 +48,8 @@ GitHub only after the user confirms "OK".
    `chapters/chapter_<n>.md`.
 2. After each section, update `chapters/chapter_<n>_qa.md` at once, ticking
    items from `quality_checklists.md`.
-3. Confirm adjustments with the user before moving to the next chapter.
+3. Continue to the next chapter. Ask the user about a chapter only when its business
+   intent is unclear.
 
 ### 4. Article delivery (`04_article_delivery`)
 
@@ -58,8 +69,8 @@ GitHub only after the user confirms "OK".
 
 ### 6. Publishing to GitHub
 
-1. Only after the user confirms both the article and the QA as "OK", commit and
-   push the article.
+1. Commit as you work. Push the article, which is the production release, only
+   after the user confirms the article and the QA as "OK".
 2. If a merge or PR is needed, follow the project's default flow. The QA record
    is never skipped.
 
