@@ -7,12 +7,11 @@
   },
   "language": "en",
   "outputs": {
-    "AGENTS.md": "16e435aad6838a293da755307531f356e10388243435ece5be7db2c2e56410d4",
-    "CLAUDE.md": "a54ff182c7e8acf56acfd6e4b9c3ff41e2c41a31c9b211b2deb9df75d9a478f9"
+    "AGENTS.md": "16e435aad6838a293da755307531f356e10388243435ece5be7db2c2e56410d4"
   },
   "profiles": [],
   "schema": 2,
-  "source_revision": "650eb0e570d5c24174daf32f2a33b00e8b9a4c6e",
+  "source_revision": "efdf4eafd90d67d84de6e2318465266b034b5bc9",
   "target": {
     "remote": "github.com/wangzitian0/my_articles",
     "repo": "my_articles",
