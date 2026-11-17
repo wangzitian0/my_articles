@@ -22,4 +22,6 @@
    - 视觉/互动占位 ✅/❌
 4. 章尾给出章级质检状态（参照 quality_checklists.md）。
 5. 更新“我”字累计次数。
+
+生成内容请保存为 `articles/<topic>/03_chapter_iterations/chapters/stage_<round>/chapter_<n>.md`，并将上一轮版本保留以便比对。节级质检结果写入同目录 `chapter_<n>_qa.md`，若需审稿请同步一个 `chapter_<n>_review.md` 给用户批注。
 ```

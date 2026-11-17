@@ -25,4 +25,6 @@
 ……
 ```
 文末追加终审小结：列出质量终审清单勾选结果。
+
+请将生成全文保存至 `articles/<topic>/04_article_delivery/article.md`，并复制一份到 `article_review.md` 供用户批注；视觉说明同步更新 `visual_plan.md`/`visual_plan_review.md`。
 ```

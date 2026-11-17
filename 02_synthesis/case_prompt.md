@@ -17,4 +17,6 @@
 - 数据支撑：
 - 结果复盘：
 - 关键洞察：
+
+请保持 Markdown 标题与列表结构，方便直接粘贴到 `articles/<topic>/02_synthesis/cases.md`，并将用户反馈记录在 `cases_review.md`。
 ```

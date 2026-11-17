@@ -16,4 +16,6 @@
    - 待核实事项或下一步提问
 3. 统计目前“我”字使用次数。
 4. 更新视觉元素/互动引导安排，标注是否已有素材支撑。
+
+请输出 Markdown 标题 + 列表结构，以便粘贴至 `articles/<topic>/02_synthesis/insights.md`；用户评语将记录在 `insights_review.md`。
 ```
